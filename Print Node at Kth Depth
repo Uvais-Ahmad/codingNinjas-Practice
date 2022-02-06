@@ -1,0 +1,16 @@
+public class BinaryTreeNodeUse{
+      
+    public static void printAt_Kth_depth( BinaryTreeNode<Integer> root , int depth ) {
+        if(root==null) return;
+
+        if(depth ==0) {
+          System.out.println(root.data+" ");
+          return;
+        }
+
+        //call for checking node at left tree at given depth
+        printAt_Kth_depth(root.left,depth-1);
+        printAt_Kth_depth(root.right,depth-1);
+     }
+
+	}
