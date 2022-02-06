@@ -1,0 +1,36 @@
+package trees;
+
+public class BinaryTreeNode<Temp> {
+	Temp data;
+	BinaryTreeNode<Temp> left;
+	BinaryTreeNode<Temp> right;
+	
+	public BinaryTreeNode(Temp data) {
+		this.data=data;
+	}
+}
+
+
+public class BinaryTreeUse{
+
+  //this function remove leaf node
+  
+  public static BinaryTreeNode<Integer> removeLeafNode( BinaryTreeNode<Integer>  root ) {
+		
+		if(root==null) return null;
+		
+		//if  root  itself a leafNode the remove it
+    
+		if(root.left==null && root.right ==null)		return null;
+		
+		//otherwise call recursive for delete the leaf node
+		//if left node is leaf then null put in root.left for remove leaf node
+    
+		root.left=removeLeafNode(root.left);
+		root.right=removeLeafNode(root.right);
+		
+		return root;
+	}
+
+
+}
