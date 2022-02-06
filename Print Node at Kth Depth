@@ -1,3 +1,15 @@
+
+public class BinaryTreeNode<Temp> {
+	Temp data;
+	BinaryTreeNode<Temp> left;
+	BinaryTreeNode<Temp> right;
+	
+	public BinaryTreeNode(Temp data) {
+		this.data=data;
+	}
+}
+
+
 public class BinaryTreeNodeUse{
       
     public static void printAt_Kth_depth( BinaryTreeNode<Integer> root , int depth ) {
