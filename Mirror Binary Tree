@@ -1,0 +1,18 @@
+public class Solution {
+
+	public static void mirrorBinaryTree(BinaryTreeNode<Integer> root){
+		//Your code goes here
+        
+        if(root == null) return;
+        
+        //Otherwise swap left And Right Node address of root node
+        BinaryTreeNode<Integer> temp=root.left;
+        root.left=root.right;
+        root.right=temp;
+        
+        //after swappimg call for leftSub tree and RightSub tree
+        mirrorBinaryTree(root.left);
+        mirrorBinaryTree(root.right);    
+	}
+	
+}
