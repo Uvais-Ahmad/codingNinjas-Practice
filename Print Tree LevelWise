@@ -1,0 +1,36 @@
+import java.util.*;
+
+public class Solution {
+
+	public static void printLevelWise(BinaryTreeNode<Integer> root) {
+		//Your code goes here
+        if(root==null) return;
+		
+		//create a Queue to store node for printing its both child node
+		Queue< BinaryTreeNode<Integer> > que=new LinkedList< BinaryTreeNode<Integer> >();
+		que.add(root);
+		
+		//now iterate loop till Queue not empy
+		
+		while( !que.isEmpty() ) {
+			BinaryTreeNode<Integer> tempNode=que.poll();
+            System.out.print(tempNode.data+":");
+
+			if(tempNode.left !=null) {
+				System.out.print("L:"+tempNode.left.data+",");
+				//add child node in queue to print after its child
+				que.add(tempNode.left);
+			}
+            else	System.out.print("L:-1,");
+            
+			if(tempNode.right != null ) {
+				System.out.print("R:"+tempNode.right.data+"\n");
+				//again store node to print its child 
+				que.add(tempNode.right);
+			}
+            else	System.out.print("R:-1\n");
+
+		}
+	}
+	
+}
