@@ -1,0 +1,60 @@
+package trees;
+//=====================================================THIS CALSS USED TO RETURN TWO THINGS  ======================================
+
+public class BtreeReturnValue {
+	int height;
+	boolean isBal;
+	
+	public BtreeReturnValue() {
+		
+	}
+	
+	public BtreeReturnValue(int height,boolean isBal) {
+		this.height=height;
+		this.isBal=isBal;
+	}
+
+}
+
+
+public class isBalanceBinaryTree{
+
+  //======================================== IS BALANCED BETTER 	WITH  Big O(n)======================================================
+	
+	// this fUNCTION return the class object
+	public static BtreeReturnValue isBalanceBetter(BinaryTreeNode<Integer> root) {
+		
+		//to finding height on each root recursively cause to increase our Time Complexity To remove it our method RETURN HEIGHT and isBal Boolean variable value
+		//create a class for return combined two output
+		//class with HEIHT AND isBal refrence 
+		if(root==null) {
+			//IF NULL height is zero and consider it is Balanced
+			BtreeReturnValue ans=new BtreeReturnValue(0,true);
+			return ans;
+		}
+		
+		//now check height for right subtree AND leftSubtree and check difference if greater than 1 it means NOT BALANCED tree
+		BtreeReturnValue leftTreeStatus=isBalanceBetter(root.left);
+		BtreeReturnValue rightTreeStatus=isBalanceBetter(root.right);
+		
+		//now similar previous after finding left and right height find max height and by +1 increamenet
+		int height = 1 + Math.max( leftTreeStatus.height , rightTreeStatus.height );
+		
+		//if Diff is >1 isBal is False
+		boolean isBal=true;
+		if( Math.abs( leftTreeStatus.height - rightTreeStatus.height ) >1) {
+			isBal=false;
+		}
+		
+		//if anyOne subtree will become isBal FALSE IT MEANS WHOLE FALSE
+		if( ! leftTreeStatus.isBal || ! rightTreeStatus.isBal  ) {
+			isBal= false;
+		}
+		
+		//NOW AFTER COMPLEETION RETURN CLASS OBJECT WITH TWO INITIALIZATION THAT IS HEIGHT AND ISBal VALUE
+		BtreeReturnValue ans=new BtreeReturnValue(height,isBal);
+		return ans;		
+		
+	}
+
+}
