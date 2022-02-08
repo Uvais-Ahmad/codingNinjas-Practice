@@ -1,0 +1,50 @@
+public class DiameterOfBinaryTree{
+
+
+//=========================================== DIAMETER OF THE TREE ================================================================
+	
+	public static int  diameterTree(BinaryTreeNode<Integer> root) {
+		//diameter is the lomgest path between two 	Nodes
+		//find left height , right height and then DIAMeter is LeftH + rightH + 1;
+		//if this is not than find Diameter of leftTree USING RECURSIVE AND Find rightRecursive diaktere
+		//after that which one is greater for current root will returned
+		
+		if(root==null)	return 0;
+		
+		//find height of left and right tree
+		int lh=heightBinaryTree( root.left );
+		int rh=heightBinaryTree( root.right );
+		int RootDiameter=lh+rh+1;
+		
+		//now check rightside Diameter and left Side Diametr
+		
+		int leftDiameter=diameterTree(root.left);
+		int rightDiameter=diameterTree(root.right);
+		
+		return Math.max( RootDiameter ,  Math.max( leftDiameter , rightDiameter ) );
+		
+		
+	}
+
+
+  
+  //========================================  HEIGHT OF THE BINARY TREE ==============================================
+	
+		public static int heightBinaryTree( BinaryTreeNode<Integer>  root ) {
+			if(root==null) return 0;
+			
+			//find the height of  left binary tree and height of right binary tree
+			int leftTreeHeight=heightBinaryTree(root.left);
+			int rightTreeHeight=heightBinaryTree(root.right);
+			
+			//out of left right tree  which side is deepest consider heightest height of tree return by +1 for root node 
+			
+//			int largestHeight=( leftTreeHeight > rightTreeHeight )? leftTreeHeight: rightTreeHeight;
+			
+			int largestHeight=Math.max(leftTreeHeight, rightTreeHeight);
+			
+			return largestHeight+1;
+			
+		}
+
+}
