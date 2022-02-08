@@ -1,0 +1,45 @@
+import java.util.*;
+
+public class TakeBinaryTree{
+
+//==========================================  TAKE LEVELWISE INPUT BINARY TREE NODE ==============================================
+
+    public static BinaryTreeNode<Integer> takeLevelWiseInput() {
+      Scanner s =new Scanner(System.in);
+      System.out.println("Enter root StaRT levelwise : ");
+
+      Queue<BinaryTreeNode<Integer>> que = new LinkedList<BinaryTreeNode<Integer>>();;
+      BinaryTreeNode<Integer> root=new BinaryTreeNode<>();;
+      int data=s.nextInt();
+
+      if(data != -1) {
+        root=new BinaryTreeNode<>(data);
+        que.add(root);
+
+      }
+
+      //Add child element of  root element which is in Queue
+      while( ! que.isEmpty() ) {
+        //current root to holding leftNode and rightNode of its both side
+
+        BinaryTreeNode<Integer> crroot=que.poll();
+        data=s.nextInt();
+
+        if(data != -1) {
+          BinaryTreeNode<Integer> leftroot=new BinaryTreeNode<>(data);
+          crroot.left=leftroot;
+          que.add(leftroot);
+        }
+
+        data=s.nextInt();
+
+        if(data != -1) {
+          BinaryTreeNode<Integer> rightroot=new BinaryTreeNode<>(data);
+          crroot.right=rightroot;
+          que.add(rightroot);
+        }
+
+      }
+      return root;
+    }
+}
