@@ -1,0 +1,24 @@
+import java.util.*;
+public class Solution {
+
+	public static void printLevelWise(BinaryTreeNode<Integer> root) {
+		//Your code goes here
+        if(root==null) return;
+        Queue< BinaryTreeNode<Integer> > que=new LinkedList< BinaryTreeNode<Integer> >();
+       	que.add(root);
+        que.add(null);
+        
+        while( !que.isEmpty() ){
+            BinaryTreeNode<Integer> tempN=que.poll();
+            if(tempN == null){
+                System.out.println("");
+                if(que.isEmpty())	return;
+                que.add(null);
+                continue;
+            }
+            System.out.print(tempN.data+" ");
+            if(tempN.left != null)	que.add(tempN.left);
+            if(tempN.right != null)	que.add(tempN.right);
+        }
+    }
+}
