@@ -1,0 +1,95 @@
+/*
+
+    Following is the Node class already written for the Linked List
+
+    class LinkedListNode<T> {
+        T data;
+        LinkedListNode<T> next;
+    
+        public LinkedListNode(T data) {
+            this.data = data;
+        }
+    }
+
+*/
+
+public class Solution {
+
+    public static LinkedListNode<Integer> swapNodes(LinkedListNode<Integer> head, int x, int y) {
+        //Your code goes here
+        int i=(x<y)? x:y ;
+        int j=(x>y)? x:y ;						//take smaller value in i
+        LinkedListNode<Integer> p1=null,c1=null,c2=null,tempH=head,p2=null,tempc2Next;
+		int temp=0;
+		
+		if( (i==0 || j==0 ) && Math.abs(i-j) !=1) {					// ===================================== anyone is zero and oher is non zero ==================== 
+			c1=tempH;
+			while(temp <i-1 || temp < j-1) {
+				tempH=tempH.next;
+				temp++;
+			}
+			p2=tempH;
+			c2=tempH.next;
+			
+			tempH=c2;
+			tempc2Next=c2.next;
+			c2.next=c1.next;
+			p2.next=c1;
+			c1.next=tempc2Next;
+			
+			return c2;
+		}
+		else if(  Math.abs(i-j) ==1 &&  !(i==0 || j==0 ) ) {		//=================================== DIFF IS 1 and NON ZERO======================================
+			
+			while(temp<i-1) {
+				tempH=tempH.next;
+				temp++;
+			}
+			p1=tempH;
+			c1=tempH.next;
+			c2=c1.next;
+			
+			
+			p1.next=c2;
+			c1.next=c2.next;
+			c2.next=c1;
+			
+			return head;
+		}
+		else if(  Math.abs(i-j) ==1 &&  (i==0 || j==0 )) {			//================================= ANYONE IS HEAD and diff is one  =================================
+			c1=tempH;
+			c2=tempH.next;
+			
+			
+			tempH=c2;
+			c1.next=c2.next;
+			c2.next=c1;
+			return tempH;
+			
+		}
+		else {														//============================== Non zero and diffrence non one ===============================
+			temp=0;
+			while(temp<i-1) {
+				tempH=tempH.next;
+				temp++;
+			}
+			p1=tempH;
+			c1=tempH.next;
+			while(temp<j-1) {
+				tempH=tempH.next;
+				temp++;
+			}
+			p2=tempH;
+			c2=tempH.next;
+			
+			p1.next=c2;
+			tempc2Next=c2.next;
+			c2.next=c1.next;
+			p2.next=c1;
+			c1.next=tempc2Next;
+			
+			return head;
+        }
+        
+    }
+}
