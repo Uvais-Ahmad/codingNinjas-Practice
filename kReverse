@@ -1,0 +1,51 @@
+/*
+
+    Following is the Node class already written for the Linked List
+
+    class LinkedListNode<T> {
+        T data;
+        LinkedListNode<T> next;
+    
+        public LinkedListNode(T data) {
+            this.data = data;
+        }
+    }
+
+*/
+
+public class Solution {
+
+
+    public static LinkedListNode<Integer>  reverseList(LinkedListNode<Integer> head){
+		if(head==null) return null;
+        if(head.next==null) return head;
+        LinkedListNode<Integer> smallhead=null;
+        if(head !=null){
+        	smallhead=reverseList(head.next);
+        	head.next.next=head;						//============== head.next define the tail of nhead
+            head.next=null;
+           
+        }
+        return smallhead;
+	}
+	
+	public static LinkedListNode<Integer> kReverse(LinkedListNode<Integer> head,int k) {
+		if(head==null || head.next==null ||k<=1) return head; 		//if  has one node that means no reverse 
+		LinkedListNode<Integer> tail=head,funHead=head;						//function head works as tail after when we reverse node 
+		for(int i=1;i<k;i++) {
+			if(tail !=null) tail=tail.next;							//use to take a small part of node 
+		}
+		
+		LinkedListNode<Integer> smallHead;									//it is head of subnode after small parts of node 
+		if(tail != null)	smallHead=tail.next;
+		else smallHead=null;										//if no submode  than assign null in submode
+		
+		if (tail != null) tail.next=null;							//here we break a small parts to reverse this
+		//know reverse he part of node 
+		head=reverseList(head);										//this reverse the pats
+		
+		funHead.next=kReverse(smallHead,k);							//after rversing some parts call kreverse for remaining node lists
+		return head;
+		
+	}
+} 
