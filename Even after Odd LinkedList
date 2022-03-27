@@ -1,0 +1,63 @@
+/*
+
+    Following is the Node class already written for the Linked List
+
+    class LinkedListNode<T> {
+        T data;
+        LinkedListNode<T> next;
+    
+        public LinkedListNode(T data) {
+            this.data = data;
+        }
+    }
+
+*/
+
+
+public class Solution {
+
+	public static LinkedListNode<Integer> evenAfterOdd(LinkedListNode<Integer> head) {
+		//Your code goes here
+        if(head==null) return head;
+        
+        LinkedListNode<Integer> evenH=null,evenT=null,oddH=null,oddT=null;
+        int temp=0;
+        
+        //here we take two list odd list and even list and after combined odd to even 
+        while(head!=null){
+            temp=head.data;
+            if(temp%2==0){							//EVEN
+                if(evenH==null){					//if this is first node than head and tail both hold first node
+                    evenH=head;
+                    evenT=head;
+                    head=head.next;
+                }
+                else{
+                    evenT.next=head;
+                    evenT=head;
+                    head=head.next;
+                }
+            }
+            else{
+                if(oddH==null){					//if this is first node than head and tail both hold first node
+                    oddH=head;
+					oddT=head;
+                    head=head.next;
+                }
+                else{
+                    oddT.next=head;
+                    oddT=head;
+                    head=head.next;
+                }
+            }   
+        }
+
+       
+        if(oddT==null) return evenH;
+        else oddT.next=null;
+        if(evenT !=null) evenT.next=null;
+    	
+        oddT.next=evenH;
+        return oddH;
+	}
+}
